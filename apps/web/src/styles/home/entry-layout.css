@@ -1785,7 +1785,12 @@
      pseudo scrolls away with the content, and `::before` is already taken by
      the top scroll-fade band above. */
   margin: 0 12px 12px 0;
-  --entry-content-surface: rgba(255, 255, 255, 0.85);
+  /* 85% of the base ground, not a literal white: `--bg` is #fff in light and
+     the N0 neutral (#121212) in dark, so this resolves to the same
+     rgba(255, 255, 255, 0.85) milky frost in light and to the token-ramp dark
+     ground (Leon 10-16 token review) instead of staying a white wash over the
+     dark theme. One rule serves both appearances — no dark-only override. */
+  --entry-content-surface: color-mix(in srgb, var(--bg) 85%, transparent);
   --entry-content-ring: var(--glass-refract-ring-edge);
   background: var(--entry-content-surface);
   -webkit-backdrop-filter: var(--material-thin-backdrop);
